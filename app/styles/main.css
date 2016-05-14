@@ -27,3 +27,39 @@
 section {
   padding : 20px 0px
 }
+
+/* Windrose styles */
+.windroserow svg {
+    margin: 0 auto;
+    width: 400px;
+    display: block;
+}
+svg text { font: 14px sans-serif; text-anchor: middle }
+svg .caption { font: 18px sans-serif; }
+svg .axes { stroke: #aaa; stroke-width: 0.5px; fill: none; }
+svg .labels text { letter-spacing: 1px; fill: #444; font-size: 12px; }
+svg .arcs {  stroke: #000; stroke-width: 0.5px; }
+svg .arctext text { font-size: 9px; }
+svg #windrose .arctext { fill: #44d; }
+svg #windspeed .arctext { fill: #933; }
+svg .calmwind text {  font-size: 18px; }
+svg text.calmcaption {  font-size: 12px; }
+svg g.tickmarks>text { font-size: 10px; fill: #888;}
+
+@media (max-width: 979px) {
+    body {
+        padding-top: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    /* Lesser stroke width for smaller screen */
+    .line {
+        stroke-width: 1.5px;
+    }
+}
+@media (min-width: 1200px) {
+    /* Bigger stroke width for bigger screen */
+    .line {
+        stroke-width: 3px;
+    }
+}

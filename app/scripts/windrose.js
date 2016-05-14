@@ -6,7 +6,7 @@
 
 var WindRose = function() {
     this.that = this;
-    that = this;
+    var that = this;
 
     var months = [];
     for(var i = 0; i < 12; i++) {
@@ -116,7 +116,7 @@ var WindRose = function() {
             var direction = datum.d;
 
             if (direction == null) {
-                diretion = "null";
+                direction = "null";
             }else {
                 direction = ""+direction;
             }
