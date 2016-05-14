@@ -213,7 +213,7 @@ var WindRose = function() {
     var visWidth = 200;
 
     // Map a wind probability to an outer radius for the chart
-    var probabilityToRadiusScale = d3.scale.linear().domain([0, 0.15]).range([34, visWidth-20]).clamp(true);
+    var probabilityToRadiusScale = d3.scale.linear().domain([0, 0.5]).range([34, visWidth-20]).clamp(true);
     function probabilityToRadius(d) { return probabilityToRadiusScale(d.p); }
     // Map a wind speed to an outer radius for the chart
     var speedToRadiusScale = d3.scale.linear().domain([0, 20]).range([34, visWidth-20]).clamp(true);
@@ -323,15 +323,15 @@ var WindRose = function() {
 
         // Set up axes: circles whose radius represents probability or speed
         if (container == "#windrose") {
-            var ticks = d3.range(0.025, 0.151, 0.025);
-            var tickmarks = d3.range(0.05,0.101,0.05);
+            var ticks = d3.range(0.1, 0.51, 0.1);
+            var tickmarks = d3.range(0.1,0.41,0.1);
             var radiusFunction = probabilityToRadiusScale;
             var tickLabel = function(d) { return "" + (d*100).toFixed(0) + "%"; }
         } else {
             var ticks = d3.range(5, 20.1, 5);
             var tickmarks = d3.range(5, 15.1, 5);
             var radiusFunction = speedToRadiusScale;
-            var tickLabel = function(d) { return "" + d + "kts"; }
+            var tickLabel = function(d) { return "" + d + "m/s"; }
         }
 
         // Circles representing chart ticks
