@@ -1,0 +1,29 @@
+/* Styles */
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+.rbc-label-start {
+  font-family: fontawesome;
+  font-weight: bold;
+  font-size: 30px;
+}
+.rbc-center-text {
+  font-family: 'Roboto', 'Myriad Set Pro', 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial;
+  fill: black;
+}
+.score .rbc-center-text-line0 {
+  font-size: 95px;
+}
+.score .rbc-center-text-line1 {
+  font-size: 20px;
+}
+
+#information p{
+  font-size: 40px
+}
+
+section {
+  padding : 20px 0px
+}
