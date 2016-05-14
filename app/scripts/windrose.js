@@ -242,7 +242,7 @@ var WindRose = function() {
             .style("fill", colorFunc)
             .attr("transform", "translate(" + visWidth + "," + visWidth + ")")
           .append("svg:title")
-            .text(function(d) { return d.d + "\u00b0 " + (100*d.p).toFixed(1) + "% " + d.s.toFixed(0) + "kts" });
+            .text(function(d) { return d.d + "\u00b0 " + (100*d.p).toFixed(1) + "% " + d.s.toFixed(0) + "m/s" });
 
         // Annotate the arcs with speed in text
         if (false) {    // disabled: just looks like chart junk
@@ -299,7 +299,7 @@ var WindRose = function() {
 
         // Update the arcs' title tooltip
         parent.select("g.arcs").selectAll("path").select("title")
-            .text(function(d) { return d.d + "\u00b0 " + (100*d.p).toFixed(1) + "% " + d.s.toFixed(0) + "kts" });
+            .text(function(d) { return d.d + "\u00b0 " + (100*d.p).toFixed(1) + "% " + d.s.toFixed(0) + "m/s" });
 
         // Update the calm wind probability in the center
         parent.select("g.calmwind").select("text")
