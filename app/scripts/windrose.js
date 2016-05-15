@@ -13,17 +13,17 @@ var WindRose = function() {
       months.push(true);
     }
 
-    var svg = d3.select('.windroserow').select("svg");
+    var svg = d3.select('.windroserow').select('svg');
 
     //setup some containers to put the plots inside
-    var big = svg.append("g")
-      .attr("id", "windrose")
-      .attr("transform", "translate(" + [35, 100] + ")");
+    var big = svg.append('g')
+      .attr('id', 'windrose')
+      .attr('transform', 'translate(' + [35, 100] + ')');
 
 
-    var avg = svg.append("g")
-      .attr("id", "avg")
-      .attr("transform", "translate(" + [464, 100] + ")");
+    var avg = svg.append('g')
+      .attr('id', 'avg')
+      .attr('transform', 'translate(' + [464, 100] + ')');
 
     /** Common wind rose code **/
 
@@ -71,7 +71,7 @@ var WindRose = function() {
             } else {
                 avgspeed = 0;
             }
-            if (dir == "null") {   // winds calm is a special case
+            if (dir == 'null') {   // winds calm is a special case
                 ret.calm = { d: null, p: freq, s: null };
             } else {
                 ret.dirs.push({ d: parseInt(dir), p: freq, s: avgspeed });
@@ -83,11 +83,11 @@ var WindRose = function() {
     // Filter input data, giving back frequencies for the selected month
     function rollupForMonths(d, months) {
         var totals = {}, speeds = {};
-        for (var i = 10; i < 361; i += 10) { totals[""+i] = 0; speeds[""+i] = 0 }
-        totals["null"] = 0; speeds["null"] = 0;
+        for (var i = 10; i < 361; i += 10) { totals[''+i] = 0; speeds[''+i] = 0 }
+        totals['null'] = 0; speeds['null'] = 0;
 
         for (var key in d.data) {
-            var s = key.split(":")
+            var s = key.split(':')
             if (s.length == 1) {
                 var direction = s[0];
             } else {
@@ -108,17 +108,17 @@ var WindRose = function() {
     // Filter input data, giving back frequencies for the selected stuff
     function rollupForAmatyr(d) {
         var totals = {}, speeds = {};
-        for (var i = 0; i < 361; i += 10) { totals[""+i] = 0; speeds[""+i] = 0 }
-        totals["null"] = 0; speeds["null"] = 0;
+        for (var i = 0; i < 361; i += 10) { totals[''+i] = 0; speeds[''+i] = 0 }
+        totals['null'] = 0; speeds['null'] = 0;
 
         for (var key in d) {
             var datum = d[key];
             var direction = datum.d;
 
             if (direction == null) {
-                direction = "null";
+                direction = 'null';
             }else {
-                direction = ""+direction;
+                direction = ''+direction;
             }
             // count up all samples with this key
             totals[direction] += datum.count;
@@ -184,28 +184,28 @@ var WindRose = function() {
     // Transformation to place a mark on top of an arc
     function probArcTextT(d) {
         var tr = probabilityToRadius(d);
-        return "translate(" + visWidth + "," + (visWidth-tr) + ")" +
-               "rotate(" + d.d + ",0," + tr + ")"; };
+        return 'translate(' + visWidth + ',' + (visWidth-tr) + ')' +
+               'rotate(' + d.d + ',0,' + tr + ')'; };
     function speedArcTextT(d) {
         var tr = speedToRadius(d);
-        return "translate(" + visWidth + "," + (visWidth-tr) + ")" +
-               "rotate(" + d.d + ",0," + tr + ")"; };
+        return 'translate(' + visWidth + ',' + (visWidth-tr) + ')' +
+               'rotate(' + d.d + ',0,' + tr + ')'; };
 
     // Return a string representing the wind speed for this datum
-    function speedText(d) { return d.s < 10 ? "" : d.s.toFixed(0); };
+    function speedText(d) { return d.s < 10 ? '' : d.s.toFixed(0); };
     // Return a string representing the probability of wind coming from this direction
-    function probabilityText(d) { return d.p < 0.02 ? "" : (100*d.p).toFixed(0); };
+    function probabilityText(d) { return d.p < 0.02 ? '' : (100*d.p).toFixed(0); };
 
     // Map a wind speed to a color
     var speedToColorScale = d3.scale.linear()
                               .domain([5, 25])
-                              .range(["hsl(220, 70%, 90%)", "hsl(220, 70%, 30%)"])
+                              .range(['hsl(220, 70%, 90%)', 'hsl(220, 70%, 30%)'])
                               .interpolate(d3.interpolateHsl);
     function speedToColor(d) { return speedToColorScale(d.s); }
     // Map a wind probability to a color
     var probabilityToColorScale = d3.scale.linear()
                                     .domain([0, 0.2])
-                                    .range(["hsl(0, 70%, 99%)", "hsl(0, 70%, 40%)"])
+                                    .range(['hsl(0, 70%, 99%)', 'hsl(0, 70%, 40%)'])
                                     .interpolate(d3.interpolateHsl);
     function probabilityToColor(d) { return probabilityToColorScale(d.p); }
 
@@ -233,55 +233,55 @@ var WindRose = function() {
     // Draw a complete wind rose visualization, including axes and center text
     function drawComplexArcs(parent, plotData, colorFunc, arcTextFunc, complexArcOptions, arcTextT) {
         // Draw the main wind rose arcs
-        parent.append("svg:g")
-            .attr("class", "arcs")
-            .selectAll("path")
+        parent.append('svg:g')
+            .attr('class', 'arcs')
+            .selectAll('path')
             .data(plotData.dirs)
-          .enter().append("svg:path")
-            .attr("d", arc(complexArcOptions))
-            .style("fill", colorFunc)
-            .attr("transform", "translate(" + visWidth + "," + visWidth + ")")
-          .append("svg:title")
-            .text(function(d) { return d.d + "\u00b0 " + (100*d.p).toFixed(1) + "% " + d.s.toFixed(0) + "m/s" });
+          .enter().append('svg:path')
+            .attr('d', arc(complexArcOptions))
+            .style('fill', colorFunc)
+            .attr('transform', 'translate(' + visWidth + ',' + visWidth + ')')
+          .append('svg:title')
+            .text(function(d) { return d.d + '\u00b0 ' + (100*d.p).toFixed(1) + '% ' + d.s.toFixed(0) + 'm/s' });
 
         // Annotate the arcs with speed in text
         if (false) {    // disabled: just looks like chart junk
-            parent.append("svg:g")
-                .attr("class", "arctext")
-                .selectAll("text")
+            parent.append('svg:g')
+                .attr('class', 'arctext')
+                .selectAll('text')
                 .data(plotData.dirs)
-              .enter().append("svg:text")
+              .enter().append('svg:text')
                 .text(arcTextFunc)
-                .attr("dy", "-3px")
-                .attr("transform", arcTextT);
+                .attr('dy', '-3px')
+                .attr('transform', arcTextT);
         }
 
         // Add the calm wind probability in the center
-        var cw = parent.append("svg:g").attr("class", "calmwind")
-            .selectAll("text")
+        var cw = parent.append('svg:g').attr('class', 'calmwind')
+            .selectAll('text')
             .data([plotData.calm.p])
             .enter();
-        cw.append("svg:text")
-            .attr("transform", "translate(" + visWidth + "," + visWidth + ")")
-            .text(function(d) { return Math.round(d * 100) + "%" });
-        cw.append("svg:text")
-            .attr("transform", "translate(" + visWidth + "," + (visWidth+14) + ")")
-            .attr("class", "calmcaption")
-            .text("calm");
+        cw.append('svg:text')
+            .attr('transform', 'translate(' + visWidth + ',' + visWidth + ')')
+            .text(function(d) { return Math.round(d * 100) + '%' });
+        cw.append('svg:text')
+            .attr('transform', 'translate(' + visWidth + ',' + (visWidth+14) + ')')
+            .attr('class', 'calmcaption')
+            .text('calm');
     }
 
     // Update all diagrams to the newly selected months
     this.updateWindVisDiagrams = function (d) {
-        updateBigWindrose(d, "#windrose");
-        updateBigWindrose(d, "#windroseavg");
+        updateBigWindrose(d, '#windrose');
+        updateBigWindrose(d, '#windroseavg');
     }
 
     // Update a specific digram to the newly selected months
     function updateBigWindrose(windroseData, container) {
-        var vis = d3.select(container).select("svg");
+        var vis = d3.select(container).select('svg');
         var rollup = rollupForAmatyr(windroseData);
 
-        if (container == "#windrose") {
+        if (container == '#windrose') {
             updateComplexArcs(vis, rollup, speedToColor, speedText, windroseArcOptions, probArcTextT);
         } else {
             updateComplexArcs(vis, rollup, probabilityToColor, probabilityText, windspeedArcOptions, speedArcTextT);
@@ -291,20 +291,20 @@ var WindRose = function() {
     // Update drawn arcs, etc to the newly selected months
     function updateComplexArcs(parent, plotData, colorFunc, arcTextFunc, complexArcOptions, arcTextT) {
         // Update the arcs' shape and color
-        parent.select("g.arcs").selectAll("path")
+        parent.select('g.arcs').selectAll('path')
             .data(plotData.dirs)
             .transition().duration(200)
-            .style("fill", colorFunc)
-            .attr("d", arc(complexArcOptions));
+            .style('fill', colorFunc)
+            .attr('d', arc(complexArcOptions));
 
         // Update the arcs' title tooltip
-        parent.select("g.arcs").selectAll("path").select("title")
-            .text(function(d) { return d.d + "\u00b0 " + (100*d.p).toFixed(1) + "% " + d.s.toFixed(0) + "m/s" });
+        parent.select('g.arcs').selectAll('path').select('title')
+            .text(function(d) { return d.d + '\u00b0 ' + (100*d.p).toFixed(1) + '% ' + d.s.toFixed(0) + 'm/s' });
 
         // Update the calm wind probability in the center
-        parent.select("g.calmwind").select("text")
+        parent.select('g.calmwind').select('text')
             .data([plotData.calm.p])
-            .text(function(d) { return Math.round(d * 100) + "%" });
+            .text(function(d) { return Math.round(d * 100) + '%' });
     }
 
     // Draw a big wind rose, for the visualization
@@ -318,65 +318,65 @@ var WindRose = function() {
 
         // The main SVG visualization element
         var vis = d3.select(container)
-            .append("svg:svg")
-            .attr("width", w + "px").attr("height", (h + 30) + "px");
+            .append('svg:svg')
+            .attr('width', w + 'px').attr('height', (h + 30) + 'px');
 
         // Set up axes: circles whose radius represents probability or speed
-        if (container == "#windrose") {
+        if (container == '#windrose') {
             var ticks = d3.range(0.1, 0.51, 0.1);
             var tickmarks = d3.range(0.1,0.41,0.1);
             var radiusFunction = probabilityToRadiusScale;
-            var tickLabel = function(d) { return "" + (d*100).toFixed(0) + "%"; }
+            var tickLabel = function(d) { return '' + (d*100).toFixed(0) + '%'; }
         } else {
             var ticks = d3.range(5, 20.1, 5);
             var tickmarks = d3.range(5, 15.1, 5);
             var radiusFunction = speedToRadiusScale;
-            var tickLabel = function(d) { return "" + d + "m/s"; }
+            var tickLabel = function(d) { return '' + d + 'm/s'; }
         }
 
         // Circles representing chart ticks
-        vis.append("svg:g")
-            .attr("class", "axes")
-          .selectAll("circle")
+        vis.append('svg:g')
+            .attr('class', 'axes')
+          .selectAll('circle')
             .data(ticks)
-          .enter().append("svg:circle")
-            .attr("cx", r).attr("cy", r)
-            .attr("r", radiusFunction);
+          .enter().append('svg:circle')
+            .attr('cx', r).attr('cy', r)
+            .attr('r', radiusFunction);
         // Text representing chart tickmarks
-        vis.append("svg:g").attr("class", "tickmarks")
-            .selectAll("text")
+        vis.append('svg:g').attr('class', 'tickmarks')
+            .selectAll('text')
             .data(tickmarks)
-          .enter().append("svg:text")
+          .enter().append('svg:text')
             .text(tickLabel)
-            .attr("dy", "-2px")
-            .attr("transform", function(d) {
+            .attr('dy', '-2px')
+            .attr('transform', function(d) {
                 var y = visWidth - radiusFunction(d);
-                return "translate(" + r + "," + y + ") " })
+                return 'translate(' + r + ',' + y + ') ' })
 
         // Labels: degree markers
-        vis.append("svg:g")
-          .attr("class", "labels")
-          .selectAll("text")
+        vis.append('svg:g')
+          .attr('class', 'labels')
+          .selectAll('text')
             .data(d3.range(30, 361, 30))
-          .enter().append("svg:text")
-            .attr("dy", "-4px")
-            .attr("transform", function(d) {
-                return "translate(" + r + "," + p + ") rotate(" + d + ",0," + (r-p) + ")"})
+          .enter().append('svg:text')
+            .attr('dy', '-4px')
+            .attr('transform', function(d) {
+                return 'translate(' + r + ',' + p + ') rotate(' + d + ',0,' + (r-p) + ')'})
             .text(function(dir) { return that.degreeToWindText(dir); });
 
         //var rollup = rollupForMonths(windroseData, selectedMonthControl.selected());
         var rollup = rollupForAmatyr(windroseData, months);
 
 
-        if (container == "#windrose") {
+        if (container == '#windrose') {
             drawComplexArcs(vis, rollup, speedToColor, speedText, windroseArcOptions, probArcTextT);
         } else {
             drawComplexArcs(vis, rollup, probabilityToColor, probabilityText, windspeedArcOptions, speedArcTextT);
         }
-        vis.append("svg:text")
+        vis.append('svg:text')
            .text(captionText)
-           .attr("class", "caption")
-           .attr("transform", "translate(" + w/2 + "," + (h + 20) + ")");
+           .attr('class', 'caption')
+           .attr('transform', 'translate(' + w/2 + ',' + (h + 20) + ')');
     }
 
     /** Code for small wind roses **/
@@ -409,19 +409,19 @@ var WindRose = function() {
             var avg = sum/n;
             winds.push({d: dir * 30, p: avg / 100});
         }
-        parent.append("svg:g")
-            .selectAll("path")
+        parent.append('svg:g')
+            .selectAll('path')
             .data(winds)
-          .enter().append("svg:path")
-            .attr("d", arc(smallArcOptions));
-        parent.append("svg:circle")
-            .attr("r", smallArcOptions.from);
+          .enter().append('svg:path')
+            .attr('d', arc(smallArcOptions));
+        parent.append('svg:circle')
+            .attr('r', smallArcOptions.from);
     }
 
     //need to reformat the data to get smallPlot to work, not sure how yet
     //var rollup = rollupForMonths(data, months);
-    //var small = svg.append("g")
-    //.attr("id", "small");
+    //var small = svg.append('g')
+    //.attr('id', 'small');
     //plotSmallRose(small, rollup)
 
     return this;
