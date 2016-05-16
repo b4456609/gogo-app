@@ -1,9 +1,4 @@
 /* Styles */
-
-.starter-template {
-  padding: 40px 15px;
-  text-align: center;
-}
 .rbc-label-start {
   font-family: fontawesome;
   font-weight: bold;
@@ -20,7 +15,7 @@
   font-size: 20px;
 }
 
-#information p{
+#information p ,i{
   font-size: 40px
 }
 
