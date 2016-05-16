@@ -18,6 +18,8 @@
 
   <!-- build:css styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/weather-icons.min.css">
+  <link rel="stylesheet" href="styles/weather-icons-wind.min.css">
   <!-- endbuild -->
 
   <!-- Latest compiled and minified JavaScript -->
@@ -63,13 +65,13 @@
   </div>
   <section id="information">
     <div class="container">
-      <div class="row">
+      <div class="row text-center">
         <div class="col-xs-3">
-          <h2 class="text-center">溫度</h2>
-          <p id="temp_value" class="text-center"></p>
+          <i class="wi wi-thermometer" style="font-size:40px"></i>
+          <p id="temp_value"></p>
         </div>
         <div class="col-xs-3">
-          <h2 class="text-center">濕度</h2>
+          <i class="wi wi-humidity" style="font-size:40px"></i>
           <p id="humid_value" class="text-center"></p>
         </div>
         <div class="col-xs-3">
