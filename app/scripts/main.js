@@ -27,28 +27,13 @@ function draw(data) {
   drawRadiulProgress(data.radar);
   drawRadar(data.radar);
   drawTempHumid(data.tempHumidRainChart);
-  pharseMetricsDataAndShow(data.metric);
+  show_metrics(data.metric);
 
   var windrose = new WindRose();
   windrose.drawBigWindrose(data.windChart, '#windrose', 'Frequency by Direction');
   windrose.drawBigWindrose(data.windChart, '#windroseavg', 'Average Speed by Direction');
 }
 
-function pharseMetricsDataAndShow(data) {
-
-  var val = {
-    temp:data.temp,
-    humd:Math.round(data.humd),
-    uv:data.uv,
-    pm2_5:data.pm2_5,
-    psi:data.psi,
-    sunset:data.sunset,
-    sunrise:data.sunrise,
-    wind:data.wind,
-  }
-
-  show_metrics(val);
-}
 
 function fetchData() {
   var jqxhr = $.getJSON('http://140.121.101.164:5000/')
