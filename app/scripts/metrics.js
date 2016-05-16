@@ -1,9 +1,9 @@
 function show_metrics(data) {
   console.log(data);
 
-    moment.locale('zh-tw');
-  var sunset = moment(data.sunset, "HH:mm:ss");
-  var sunrise = moment(data.sunrise, "HH:mm:ss");
+  moment.locale('zh-tw');
+  var sunset = moment(data.sunset, 'HH:mm:ss');
+  var sunrise = moment(data.sunrise, 'HH:mm:ss');
 
   $('#temp_value').text(data.temp + '°C');
   $('#humid_value').text(data.humd + '%');
@@ -16,5 +16,5 @@ function show_metrics(data) {
   $('#sunrise_dis').text(sunrise.fromNow());
   $('#wind_s').text(data.wind + 'm/s');
 
-  //  + moment(data.sunset,"HH:mm:ss").fromNow()
+  //  + moment(data.sunset,'HH:mm:ss').fromNow()
 }
