@@ -34,17 +34,17 @@ section {
     width: 400px;
     display: block;
 }
-svg text { font: 14px sans-serif; text-anchor: middle }
-svg .caption { font: 18px sans-serif; }
-svg .axes { stroke: #aaa; stroke-width: 0.5px; fill: none; }
-svg .labels text { letter-spacing: 1px; fill: #444; font-size: 12px; }
-svg .arcs {  stroke: #000; stroke-width: 0.5px; }
-svg .arctext text { font-size: 9px; }
-svg #windrose .arctext { fill: #44d; }
-svg #windspeed .arctext { fill: #933; }
-svg .calmwind text {  font-size: 18px; }
-svg text.calmcaption {  font-size: 12px; }
-svg g.tickmarks>text { font-size: 10px; fill: #888;}
+.windroserow svg text { font: 14px sans-serif; text-anchor: middle }
+.windroserow svg .caption { font: 18px sans-serif; }
+.windroserow svg .axes { stroke: #aaa; stroke-width: 0.5px; fill: none; }
+.windroserow svg .labels text { letter-spacing: 1px; fill: #444; font-size: 12px; }
+.windroserow svg .arcs {  stroke: #000; stroke-width: 0.5px; }
+.windroserow svg .arctext text { font-size: 9px; }
+.windroserow svg #windrose .arctext { fill: #44d; }
+.windroserow svg #windspeed .arctext { fill: #933; }
+.windroserow svg .calmwind text {  font-size: 18px; }
+.windroserow svg text.calmcaption {  font-size: 12px; }
+.windroserow svg g.tickmarks>text { font-size: 10px; fill: #888;}
 
 @media (max-width: 979px) {
     body {
