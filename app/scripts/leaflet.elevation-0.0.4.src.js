@@ -1,7 +1,7 @@
 L.Control.Elevation = L.Control.extend({
     options: {
-        position: "topright",
-        theme: "lime-theme",
+        position: 'topright',
+        theme: 'lime-theme',
         width: 600,
         height: 175,
         margins: {
@@ -11,7 +11,7 @@ L.Control.Elevation = L.Control.extend({
             left: 60
         },
         useHeightIndicator: true,
-        interpolation: "linear",
+        interpolation: 'linear',
         hoverNumber: {
             decimalsX: 3,
             decimalsY: 0,
@@ -24,8 +24,8 @@ L.Control.Elevation = L.Control.extend({
         yAxisMax: undefined,
         forceAxisBounds: false,
         controlButton: {
-            iconCssClass: "elevation-toggle-icon",
-            title: "Elevation"
+            iconCssClass: 'elevation-toggle-icon',
+            title: 'Elevation'
         },
         imperial: false
     },
@@ -63,76 +63,76 @@ L.Control.Elevation = L.Control.extend({
                 return y(d.altitude);
             });
 
-        var container = this._container = L.DomUtil.create("div", "elevation");
+        var container = this._container = L.DomUtil.create('div', 'elevation');
         L.DomUtil.addClass(container, opts.theme); //append theme to control
 
         this._initToggle();
 
         var cont = d3.select(container);
-        cont.attr("width", opts.width);
-        var svg = cont.append("svg");
-        svg.attr("width", opts.width)
-            .attr("class", "background")
-            .attr("height", opts.height)
-            .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        cont.attr('width', opts.width);
+        var svg = cont.append('svg');
+        svg.attr('width', opts.width)
+            .attr('class', 'background')
+            .attr('height', opts.height)
+            .append('g')
+            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
         var line = d3.svg.line();
         line = line
             .x(function(d) {
-                return d3.mouse(svg.select("g"))[0];
+                return d3.mouse(svg.select('g'))[0];
             })
             .y(function(d) {
                 return this._height();
             });
 
-        var g = d3.select(this._container).select("svg").select("g");
+        var g = d3.select(this._container).select('svg').select('g');
 
-        this._areapath = g.append("path")
-            .attr("class", "area");
+        this._areapath = g.append('path')
+            .attr('class', 'area');
 
-        var background = this._background = g.append("rect")
-            .attr("width", this._width())
-            .attr("height", this._height())
-            .style("fill", "none")
-            .style("stroke", "none")
-            .style("pointer-events", "all");
+        var background = this._background = g.append('rect')
+            .attr('width', this._width())
+            .attr('height', this._height())
+            .style('fill', 'none')
+            .style('stroke', 'none')
+            .style('pointer-events', 'all');
 
         if (L.Browser.touch) {
 
-            background.on("touchmove.drag", this._dragHandler.bind(this)).
-            on("touchstart.drag", this._dragStartHandler.bind(this)).
-            on("touchstart.focus", this._mousemoveHandler.bind(this));
+            background.on('touchmove.drag', this._dragHandler.bind(this)).
+            on('touchstart.drag', this._dragStartHandler.bind(this)).
+            on('touchstart.focus', this._mousemoveHandler.bind(this));
             L.DomEvent.on(this._container, 'touchend', this._dragEndHandler, this);
 
         } else {
 
-            background.on("mousemove.focus", this._mousemoveHandler.bind(this)).
-            on("mouseout.focus", this._mouseoutHandler.bind(this)).
-            on("mousedown.drag", this._dragStartHandler.bind(this)).
-            on("mousemove.drag", this._dragHandler.bind(this));
+            background.on('mousemove.focus', this._mousemoveHandler.bind(this)).
+            on('mouseout.focus', this._mouseoutHandler.bind(this)).
+            on('mousedown.drag', this._dragStartHandler.bind(this)).
+            on('mousemove.drag', this._dragHandler.bind(this));
             L.DomEvent.on(this._container, 'mouseup', this._dragEndHandler, this);
 
         }
 
-        this._xaxisgraphicnode = g.append("g");
-        this._yaxisgraphicnode = g.append("g");
+        this._xaxisgraphicnode = g.append('g');
+        this._yaxisgraphicnode = g.append('g');
         this._appendXaxis(this._xaxisgraphicnode);
         this._appendYaxis(this._yaxisgraphicnode);
 
-        var focusG = this._focusG = g.append("g");
+        var focusG = this._focusG = g.append('g');
         this._mousefocus = focusG.append('svg:line')
             .attr('class', 'mouse-focus-line')
             .attr('x2', '0')
             .attr('y2', '0')
             .attr('x1', '0')
             .attr('y1', '0');
-        this._focuslabelX = focusG.append("svg:text")
-            .style("pointer-events", "none")
-            .attr("class", "mouse-focus-label-x");
-        this._focuslabelY = focusG.append("svg:text")
-            .style("pointer-events", "none")
-            .attr("class", "mouse-focus-label-y");
+        this._focuslabelX = focusG.append('svg:text')
+            .style('pointer-events', 'none')
+            .attr('class', 'mouse-focus-label-x');
+        this._focuslabelY = focusG.append('svg:text')
+            .style('pointer-events', 'none')
+            .attr('class', 'mouse-focus-label-y');
 
         if (this._data) {
             this._applyData();
@@ -168,19 +168,19 @@ L.Control.Elevation = L.Control.extend({
             x2 = Math.max(this._dragStartCoords[0], dragEndCoords[0]);
 
         if (!this._dragRectangle && !this._dragRectangleG) {
-            var g = d3.select(this._container).select("svg").select("g");
+            var g = d3.select(this._container).select('svg').select('g');
 
-            this._dragRectangleG = g.append("g");
+            this._dragRectangleG = g.append('g');
 
-            this._dragRectangle = this._dragRectangleG.append("rect")
-                .attr("width", x2 - x1)
-                .attr("height", this._height())
-                .attr("x", x1)
+            this._dragRectangle = this._dragRectangleG.append('rect')
+                .attr('width', x2 - x1)
+                .attr('height', this._height())
+                .attr('x', x1)
                 .attr('class', 'mouse-drag')
-                .style("pointer-events", "none");
+                .style('pointer-events', 'none');
         } else {
-            this._dragRectangle.attr("width", x2 - x1)
-                .attr("x", x1);
+            this._dragRectangle.attr('width', x2 - x1)
+                .attr('x', x1);
         }
 
     },
@@ -303,7 +303,7 @@ L.Control.Elevation = L.Control.extend({
                     .on(container, 'mouseover', this._expand, this)
                     .on(container, 'mouseout', this._collapse, this);
             }
-            var link = this._button = L.DomUtil.create('a', "elevation-toggle " + this.options.controlButton
+            var link = this._button = L.DomUtil.create('a', 'elevation-toggle ' + this.options.controlButton
                 .iconCssClass, container);
             link.href = '#';
             link.title = this.options.controlButton.title;
@@ -345,17 +345,17 @@ L.Control.Elevation = L.Control.extend({
     _formatter: function(num, dec, sep) {
         var res;
         if (dec === 0) {
-            res = Math.round(num) + "";
+            res = Math.round(num) + '';
         } else {
-            res = L.Util.formatNum(num, dec) + "";
+            res = L.Util.formatNum(num, dec) + '';
         }
-        var numbers = res.split(".");
+        var numbers = res.split('.');
         if (numbers[1]) {
             var d = dec - numbers[1].length;
             for (; d > 0; d--) {
-                numbers[1] += "0";
+                numbers[1] += '0';
             }
-            res = numbers.join(sep || ".");
+            res = numbers.join(sep || '.');
         }
         return res;
     },
@@ -364,27 +364,27 @@ L.Control.Elevation = L.Control.extend({
         var opts = this.options;
 
         if (opts.imperial) {
-            y.attr("class", "y axis")
+            y.attr('class', 'y axis')
                 .call(d3.svg.axis()
                     .scale(this._y)
                     .ticks(this.options.yTicks)
-                    .orient("left"))
-                .append("text")
-                .attr("x", -37)
-                .attr("y", 3)
-                .style("text-anchor", "end")
-                .text("ft");
+                    .orient('left'))
+                .append('text')
+                .attr('x', -37)
+                .attr('y', 3)
+                .style('text-anchor', 'end')
+                .text('ft');
         } else {
-            y.attr("class", "y axis")
+            y.attr('class', 'y axis')
                 .call(d3.svg.axis()
                     .scale(this._y)
                     .ticks(this.options.yTicks)
-                    .orient("left"))
-                .append("text")
-                .attr("x", -45)
-                .attr("y", 3)
-                .style("text-anchor", "end")
-                .text("m");
+                    .orient('left'))
+                .append('text')
+                .attr('x', -45)
+                .attr('y', 3)
+                .style('text-anchor', 'end')
+                .text('m');
         }
     },
 
@@ -392,39 +392,39 @@ L.Control.Elevation = L.Control.extend({
         var opts = this.options;
 
         if (opts.imperial) {
-            x.attr("class", "x axis")
-                .attr("transform", "translate(0," + this._height() + ")")
+            x.attr('class', 'x axis')
+                .attr('transform', 'translate(0,' + this._height() + ')')
                 .call(d3.svg.axis()
                     .scale(this._x)
                     .ticks(this.options.xTicks)
-                    .orient("bottom"))
-                .append("text")
-                .attr("x", this._width() + 10)
-                .attr("y", 15)
-                .style("text-anchor", "end")
-                .text("mi");
+                    .orient('bottom'))
+                .append('text')
+                .attr('x', this._width() + 10)
+                .attr('y', 15)
+                .style('text-anchor', 'end')
+                .text('mi');
         } else {
-            x.attr("class", "x axis")
-                .attr("transform", "translate(0," + this._height() + ")")
+            x.attr('class', 'x axis')
+                .attr('transform', 'translate(0,' + this._height() + ')')
                 .call(d3.svg.axis()
                     .scale(this._x)
                     .ticks(this.options.xTicks)
-                    .orient("bottom"))
-                .append("text")
-                .attr("x", this._width() + 20)
-                .attr("y", 15)
-                .style("text-anchor", "end")
-                .text("km");
+                    .orient('bottom'))
+                .append('text')
+                .attr('x', this._width() + 20)
+                .attr('y', 15)
+                .style('text-anchor', 'end')
+                .text('km');
         }
     },
 
     _updateAxis: function() {
-        this._xaxisgraphicnode.selectAll("g").remove();
-        this._xaxisgraphicnode.selectAll("path").remove();
-        this._xaxisgraphicnode.selectAll("text").remove();
-        this._yaxisgraphicnode.selectAll("g").remove();
-        this._yaxisgraphicnode.selectAll("path").remove();
-        this._yaxisgraphicnode.selectAll("text").remove();
+        this._xaxisgraphicnode.selectAll('g').remove();
+        this._xaxisgraphicnode.selectAll('path').remove();
+        this._xaxisgraphicnode.selectAll('text').remove();
+        this._yaxisgraphicnode.selectAll('g').remove();
+        this._yaxisgraphicnode.selectAll('path').remove();
+        this._yaxisgraphicnode.selectAll('text').remove();
         this._appendXaxis(this._xaxisgraphicnode);
         this._appendYaxis(this._yaxisgraphicnode);
     },
@@ -445,13 +445,13 @@ L.Control.Elevation = L.Control.extend({
             this._marker = null;
         }
         if (this._mouseHeightFocus) {
-            this._mouseHeightFocus.style("visibility", "hidden");
-            this._mouseHeightFocusLabel.style("visibility", "hidden");
+            this._mouseHeightFocus.style('visibility', 'hidden');
+            this._mouseHeightFocusLabel.style('visibility', 'hidden');
         }
         if (this._pointG) {
-            this._pointG.style("visibility", "hidden");
+            this._pointG.style('visibility', 'hidden');
         }
-        this._focusG.style("visibility", "hidden");
+        this._focusG.style('visibility', 'hidden');
 
     },
 
@@ -482,49 +482,49 @@ L.Control.Elevation = L.Control.extend({
 
             if (!this._mouseHeightFocus) {
 
-                var heightG = d3.select(".leaflet-overlay-pane svg")
-                    .append("g");
+                var heightG = d3.select('.leaflet-overlay-pane svg')
+                    .append('g');
                 this._mouseHeightFocus = heightG.append('svg:line')
-                    .attr("class", opts.theme + " height-focus line")
-                    .attr("x2", 0)
-                    .attr("y2", 0)
-                    .attr("x1", 0)
-                    .attr("y1", 0);
+                    .attr('class', opts.theme + ' height-focus line')
+                    .attr('x2', 0)
+                    .attr('y2', 0)
+                    .attr('x1', 0)
+                    .attr('y1', 0);
 
-                var pointG = this._pointG = heightG.append("g");
-                pointG.append("svg:circle")
-                    .attr("r", 6)
-                    .attr("cx", 0)
-                    .attr("cy", 0)
-                    .attr("class", opts.theme + " height-focus circle-lower");
+                var pointG = this._pointG = heightG.append('g');
+                pointG.append('svg:circle')
+                    .attr('r', 6)
+                    .attr('cx', 0)
+                    .attr('cy', 0)
+                    .attr('class', opts.theme + ' height-focus circle-lower');
 
-                this._mouseHeightFocusLabel = heightG.append("svg:text")
-                    .attr("class", opts.theme + " height-focus-label")
-                    .style("pointer-events", "none");
+                this._mouseHeightFocusLabel = heightG.append('svg:text')
+                    .attr('class', opts.theme + ' height-focus-label')
+                    .style('pointer-events', 'none');
 
             }
 
             var normalizedAlt = this._height() / this._maxElevation * alt;
             var normalizedY = layerpoint.y - normalizedAlt;
-            this._mouseHeightFocus.attr("x1", layerpoint.x)
-                .attr("x2", layerpoint.x)
-                .attr("y1", layerpoint.y)
-                .attr("y2", normalizedY)
-                .style("visibility", "visible");
+            this._mouseHeightFocus.attr('x1', layerpoint.x)
+                .attr('x2', layerpoint.x)
+                .attr('y1', layerpoint.y)
+                .attr('y2', normalizedY)
+                .style('visibility', 'visible');
 
-            this._pointG.attr("transform", "translate(" + layerpoint.x + "," + layerpoint.y + ")")
-                .style("visibility", "visible");
+            this._pointG.attr('transform', 'translate(' + layerpoint.x + ',' + layerpoint.y + ')')
+                .style('visibility', 'visible');
 
             if (opts.imperial) {
-                this._mouseHeightFocusLabel.attr("x", layerpoint.x)
-                    .attr("y", normalizedY)
-                    .text(numY + " ft")
-                    .style("visibility", "visible");
+                this._mouseHeightFocusLabel.attr('x', layerpoint.x)
+                    .attr('y', normalizedY)
+                    .text(numY + ' ft')
+                    .style('visibility', 'visible');
             } else {
-                this._mouseHeightFocusLabel.attr("x", layerpoint.x)
-                    .attr("y", normalizedY)
-                    .text(numY + " m")
-                    .style("visibility", "visible");
+                this._mouseHeightFocusLabel.attr('x', layerpoint.x)
+                    .attr('y', normalizedY)
+                    .text(numY + ' m')
+                    .style('visibility', 'visible');
             }
 
         } else {
@@ -624,7 +624,7 @@ L.Control.Elevation = L.Control.extend({
             }
         }
 
-        var feat = d && d.type === "FeatureCollection";
+        var feat = d && d.type === 'FeatureCollection';
         if (feat) {
             for (i = 0; i < d.features.length; i++) {
                 this._addData(d.features[i]);
@@ -642,7 +642,7 @@ L.Control.Elevation = L.Control.extend({
     _calculateFullExtent: function(data) {
 
         if (!data || data.length < 1) {
-            throw new Error("no data in parameters");
+            throw new Error('no data in parameters');
         }
 
         var ext = new L.latLngBounds(data[0].latlng, data[0].latlng);
@@ -668,7 +668,7 @@ L.Control.Elevation = L.Control.extend({
             layer = d;
         }
         if (layer) {
-            layer.on("mousemove", this._handleLayerMouseOver.bind(this));
+            layer.on('mousemove', this._handleLayerMouseOver.bind(this));
         }
     },
 
@@ -689,7 +689,7 @@ L.Control.Elevation = L.Control.extend({
 
     _showDiagramIndicator: function(item, xCoordinate) {
         var opts = this.options;
-        this._focusG.style("visibility", "visible");
+        this._focusG.style('visibility', 'visible');
         this._mousefocus.attr('x1', xCoordinate)
             .attr('y1', 0)
             .attr('x2', xCoordinate)
@@ -703,17 +703,17 @@ L.Control.Elevation = L.Control.extend({
             numX = opts.hoverNumber.formatter(dist, opts.hoverNumber.decimalsX);
 
         if (opts.imperial) {
-            this._focuslabelX.attr("x", xCoordinate)
-                .text(numY + " ft");
-            this._focuslabelY.attr("y", this._height() - 5)
-                .attr("x", xCoordinate)
-                .text(numX + " mi");
+            this._focuslabelX.attr('x', xCoordinate)
+                .text(numY + ' ft');
+            this._focuslabelY.attr('y', this._height() - 5)
+                .attr('x', xCoordinate)
+                .text(numX + ' mi');
         } else {
-            this._focuslabelX.attr("x", xCoordinate)
-                .text(numY + " m");
-            this._focuslabelY.attr("y", this._height() - 5)
-                .attr("x", xCoordinate)
-                .text(numX + " km");
+            this._focuslabelX.attr('x', xCoordinate)
+                .text(numY + ' m');
+            this._focuslabelY.attr('y', this._height() - 5)
+                .attr('x', xCoordinate)
+                .text(numX + ' km');
         }
     },
 
@@ -736,7 +736,7 @@ L.Control.Elevation = L.Control.extend({
         this._x.domain(xdomain);
         this._y.domain(ydomain);
         this._areapath.datum(this._data)
-            .attr("d", this._area);
+            .attr('d', this._area);
         this._updateAxis();
 
         this._fullExtent = this._calculateFullExtent(this._data);
@@ -765,17 +765,17 @@ L.Control.Elevation = L.Control.extend({
         // workaround for 'Error: Problem parsing d=""' in Webkit when empty data
         // https://groups.google.com/d/msg/d3-js/7rFxpXKXFhI/HzIO_NPeDuMJ
         //this._areapath.datum(this._data).attr("d", this._area);
-        this._areapath.attr("d", "M0 0");
+        this._areapath.attr('d', 'M0 0');
 
         this._x.domain([0, 1]);
         this._y.domain([0, 1]);
         this._updateAxis();
     },
     hide: function() {
-        this._container.style.display = "none";
+        this._container.style.display = 'none';
     },
     show: function() {
-        this._container.style.display = "block";
+        this._container.style.display = 'block';
     }
 
 });
