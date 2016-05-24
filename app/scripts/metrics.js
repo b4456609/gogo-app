@@ -7,7 +7,7 @@ function show_metrics(data) {
 
   $('#temp_value').text(data.temp + '°C');
   $('#humid_value').text(data.humd + '%');
-  $('#uv_value').text(data.uv);
+  $('#uv_value').text(Math.round(data.uv));
   $('#ari_pm').text(data.pm2_5 + 'μg/m3');
   $('#air_psi').text(data.psi);
   $('#sunset').text(sunset.format('HH:mm'));
