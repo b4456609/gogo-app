@@ -23,7 +23,7 @@ $(function() {
     console.log(e.target.get_moving_pace());
     console.log(e.target.get_elevation_gain());
     console.log(e.target.get_elevation_loss());
-    console.log(e.target.get_elevation_data())
+    // console.log(e.target.get_elevation_data())
 
     var total_duration = moment.duration(e.target.get_total_time());
     var moving_duration = moment.duration(e.target.get_moving_time());
