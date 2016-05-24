@@ -28,6 +28,7 @@ function draw(data) {
   drawRadar(data.radar);
   drawTempHumid(data.tempHumidRainChart);
   show_metrics(data.metric);
+  predictChart(data.predict)
 
   var windrose = new WindRose();
   windrose.drawBigWindrose(data.windChart, '#windrose', 'Frequency by Direction');
