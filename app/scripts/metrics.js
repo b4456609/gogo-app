@@ -1,4 +1,4 @@
-function show_metrics(data) {
+function show_metrics(data,dataTime) {
   console.log(data);
 
   moment.locale('zh-tw');
@@ -11,6 +11,8 @@ function show_metrics(data) {
   $('#ari_pm').text(data.pm2_5 + 'μg/m3');
   $('#air_psi').text(data.psi);
   $('#sunset').text(sunset.format('HH:mm'));
+  $('#data_time').text(moment(dataTime).format('HH:mm'));
+  $('#from_now').text(moment(dataTime).fromNow());
   $('#sunset_dis').text(sunset.fromNow());
   $('#sunrise').text(sunrise.format('HH:mm'));
   $('#sunrise_dis').text(sunrise.fromNow());

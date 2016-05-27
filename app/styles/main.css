@@ -28,6 +28,11 @@ section {
   padding : 20px 0px
 }
 
+#information .metric-time{
+  font-size: 20px;
+  margin-bottom: 24px
+}
+
 /* Windrose styles */
 .windroserow svg {
     margin: 0 auto;

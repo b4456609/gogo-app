@@ -27,7 +27,7 @@ function draw(data) {
   drawRadiulProgress(data.radar);
   drawRadar(data.radar);
   drawTempHumid(data.tempHumidRainChart);
-  show_metrics(data.metric);
+  show_metrics(data.metric, data.metricTime);
   predictChart(data.predict)
 
   var windrose = new WindRose();
