@@ -20,6 +20,7 @@
 
 (function() {
   'use strict';
+  Chart.defaults.global.maintainAspectRatio = false;
   fetchData();
 })();
 

@@ -4,9 +4,10 @@ function drawRadar(data) {
     labels: [
       'Weather',
       'Air',
+      'UV',
       'Rain',
       'Sun',
-      'UV'
+      '預報'
     ],
     datasets: [{
       label: 'Run',
@@ -16,7 +17,7 @@ function drawRadar(data) {
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(255,99,132,1)',
-      data: [data.weather, data.air, data.rain, data.sun,data.uv]
+      data: [data.weather, data.air, data.uv, data.rain, data.sun, data.predict]
     }]
   };
 

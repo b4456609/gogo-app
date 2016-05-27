@@ -8,7 +8,6 @@ function drawTempHumid(data) {
 }
 
 function drawTempHumidChart(labels, temp, humid, rain) {
-  Chart.defaults.global.maintainAspectRatio = false;
   console.log(labels, temp, humid)
   var ctx1 = document.getElementById('tempChart');
   var myChart1 = new Chart(ctx1, {
