@@ -1,13 +1,8 @@
 function drawRadiulProgress(data) {
   console.log(data)
-  var sum = 0;
-  var size = 0;
-  for(var key in data) {
-      sum += data[key];
-      size++;
-  }
+  var sum = data.weather + data.air + data.uv + data.rain + data.predict;
 
-  var avg = sum / size;
+  var avg = sum / 5;
 
   var calories = new RadialProgressChart('.score', {
     diameter: 200,

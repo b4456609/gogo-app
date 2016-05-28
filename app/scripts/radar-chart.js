@@ -6,7 +6,6 @@ function drawRadar(data) {
       'Air',
       'UV',
       'Rain',
-      'Sun',
       '預報'
     ],
     datasets: [{
@@ -17,7 +16,7 @@ function drawRadar(data) {
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(255,99,132,1)',
-      data: [data.weather, data.air, data.uv, data.rain, data.sun, data.predict]
+      data: [data.weather, data.air, data.uv, data.rain, data.predict]
     }]
   };
 
