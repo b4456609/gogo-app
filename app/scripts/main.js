@@ -21,7 +21,7 @@
 (function() {
   'use strict';
   Chart.defaults.global.maintainAspectRatio = false;
-  fetchData();
+  fetchData(draw);
 })();
 
 function draw(data) {
@@ -30,21 +30,40 @@ function draw(data) {
   drawTempHumid(data.tempHumidRainChart);
   show_metrics(data.metric, data.metricTime);
   predictChart(data.predict)
-
+  
   var windrose = new WindRose();
   windrose.drawBigWindrose(data.windChart, '#windrose', 'Frequency by Direction');
   windrose.drawBigWindrose(data.windChart, '#windroseavg', 'Average Speed by Direction');
 }
 
 
-function fetchData() {
-  var jqxhr = $.getJSON('http://140.121.101.164:5000/')
+function fetchData(callback, fromDatetime, toDatetime) {
+  var data = {};
+  if(fromDatetime && toDatetime){
+    data.start = fromDatetime;
+    data.end = toDatetime;
+  }
+  var jqxhr = $.getJSON('http://140.121.101.164:5000/',data)
     .done(function(json) {
       console.log(json)
-      draw(json);
+      callback(json);
     })
     .fail(function(jqxhr, textStatus, error) {
       var err = textStatus + ', ' + error;
       console.log('Request Failed: ' + err);
     })
+}
+
+function updateData(interval){
+  var date = moment().subtract(interval, 'hours');
+  var fromDatetime = date.toISOString();
+  var toDatetime = moment().toISOString();
+  console.log(interval, fromDatetime, toDatetime);
+  fetchData(updateChart, fromDatetime, toDatetime);
+}
+
+function updateChart(data) {
+  drawTempHumid(data.tempHumidRainChart);
+  var windrose = new WindRose();
+  windrose.updateWindVisDiagrams(data.windChart);
 }

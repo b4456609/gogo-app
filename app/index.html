@@ -61,7 +61,7 @@
         <div class="score"></div>
       </div>
       <div class="col-xs-12 col-md-6 radar">
-        <canvas id="radarChart" width="300" height="300"/>
+        <canvas id="radarChart" width="300" height="300" />
       </div>
     </div>
   </div>
@@ -110,26 +110,42 @@
       </div>
     </div>
   </section>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-12">
-        <canvas id="tempChart" height="430"></canvas>
-      </div>
-      <div class="col-xs-12">
-        <canvas id="rainChart" height="200"></canvas>
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid">
-    <div class="row windroserow">
-      <div class="col-xs-12 col-md-6">
-        <div id="windrose"></div>
-      </div>
-      <div class="col-xs-12 col-md-6">
-        <div id="windroseavg"></div>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 text-right">
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">過去3小時<span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+              <li><a role="button" onclick="updateData(3);">過去3小時</a></li>
+              <li><a role="button" onclick="updateData(6);">過去6小時</a></li>
+              <li><a role="button" onclick="updateData(12);">過去12小時</a></li>
+              <li><a role="button" onclick="updateData(24);">過去24小時</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <canvas id="tempChart" height="430"></canvas>
+        </div>
+        <div class="col-xs-12">
+          <canvas id="rainChart" height="200"></canvas>
+        </div>
+      </div>
+      <div class="row windroserow">
+        <div class="col-xs-12 col-md-6">
+          <div id="windrose"></div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <div id="windroseavg"></div>
+        </div>
+      </div>
+    </div>
+  </section>
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12 text-center">
