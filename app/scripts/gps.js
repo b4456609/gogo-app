@@ -6,13 +6,15 @@ $(function () {
 });
 
 
-function drawGPSChart(start, end) {
+function drawGPSChart(start, end, timeSpeed) {
   var callback = function (data) {
     console.log(data);
     gpsChart.draw(data.tempHumidRainChart);
   };
   
   fetchData(callback, start, end);
+  console.log(speedChart);
+  speedChart.draw(timeSpeed);
 }
 
 function showMap(callback) {
@@ -40,6 +42,7 @@ function showMap(callback) {
     console.log(e.target.get_moving_pace());
     console.log(e.target.get_elevation_gain());
     console.log(e.target.get_elevation_loss());
+    console.log(e.target.getTimeSpeed());
     // console.log(e.target.get_elevation_data())
 
     var total_duration = moment.duration(e.target.get_total_time());
@@ -58,7 +61,7 @@ function showMap(callback) {
     $('#down').text(Math.round(e.target.get_elevation_loss()) + 'm');
     console.log(startTime, endTime);
     // get server data
-    callback(startTime.toISOString(), endTime.toISOString());
+    callback(startTime.toISOString(), endTime.toISOString(), e.target.getTimeSpeed());
   }).on('addline', function (e) {
     el.addData(e.line);
   }).addTo(map);

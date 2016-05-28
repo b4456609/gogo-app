@@ -91,6 +91,8 @@ L.GPX = L.FeatureGroup.extend({
     if (gpx) {
       this._parse(gpx, options, this.options.async);
     }
+    
+    this._speedAndTime = [];
   },
 
   get_duration_string: function(duration, hidems) {
@@ -118,6 +120,8 @@ L.GPX = L.FeatureGroup.extend({
   },
 
   // Public methods
+  getTimeSpeed:        function() {return this._speedAndTime},
+  
   to_miles:            function(v) { return v / 1.60934; },
   to_ft:               function(v) { return v * 3.28084; },
   m_to_km:             function(v) { return v / 1000; },
@@ -359,6 +363,7 @@ L.GPX = L.FeatureGroup.extend({
     var last = null;
 
     for (var i = 0; i < el.length; i++) {
+      var speed = 0;
       var _, ll = new L.LatLng(
         el[i].getAttribute('lat'),
         el[i].getAttribute('lon'));
@@ -391,13 +396,16 @@ L.GPX = L.FeatureGroup.extend({
       this._info.duration.end = ll.meta.time;
 
       if (last != null) {
-        this._info.length += this._dist3d(last, ll);
+        var len = this._dist3d(last, ll);
+        this._info.length += len;
 
         var t = ll.meta.ele - last.meta.ele;
         if (t > 0) this._info.elevation.gain += t;
         else this._info.elevation.loss += Math.abs(t);
 
         t = Math.abs(ll.meta.time - last.meta.time);
+        speed = this.m_to_km(len) / t * 1000 * 3600;
+        
         this._info.duration.total += t;
         if (t < options.max_point_interval) this._info.duration.moving += t;
       } else {
@@ -405,6 +413,7 @@ L.GPX = L.FeatureGroup.extend({
       }
 
       last = ll;
+      this._speedAndTime.push({time:ll.meta.time, speed:speed, elevation: ll.meta.ele});
       coords.push(ll);
     }
 
