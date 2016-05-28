@@ -33,6 +33,11 @@ section {
   margin-bottom: 24px
 }
 
+/*dropdown height*/
+.dropdown-menu > li > a {
+  padding: 8px 20px;
+}
+
 /* Windrose styles */
 .windroserow svg {
     margin: 0 auto;
