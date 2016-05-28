@@ -2,7 +2,7 @@ function predictChart(data) {
 	console.log(data)
 
 	var time = data.time.map(function(i) {
-    return moment(i).tz('Asia/Taipei').format('LL')
+    return moment(i).tz('Asia/Taipei').format('M/D HH時')
   });
 
 	var predict = [];

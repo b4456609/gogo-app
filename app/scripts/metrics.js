@@ -1,7 +1,6 @@
 function show_metrics(data,dataTime) {
   console.log(data);
 
-  moment.locale('zh-tw');
   var sunset = moment(data.sunset, 'HH:mm:ss');
   var sunrise = moment(data.sunrise, 'HH:mm:ss');
 

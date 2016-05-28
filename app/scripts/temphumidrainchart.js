@@ -1,7 +1,7 @@
 function drawTempHumid(data) {
 
   var time = data.time.map(function(i) {
-    return moment(i).tz('Asia/Taipei').format('LT')
+    return moment(i).tz('Asia/Taipei').format('M/D HH:mm')
   })
   drawTempHumidChart(time, data.temp, data.humid);
   drawRainChart(time, data.rain);

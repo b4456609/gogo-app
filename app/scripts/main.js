@@ -21,6 +21,7 @@
 (function() {
   'use strict';
   Chart.defaults.global.maintainAspectRatio = false;
+  moment.locale('zh-tw');
   fetchData(draw);
 })();
 
