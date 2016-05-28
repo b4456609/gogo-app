@@ -1,5 +1,8 @@
 function predictChart(data) {
-	console.log(data)
+	console.log(data);
+	console.log('time' in data);
+  if(!('time' in data))
+    return;
 
 	var time = data.time.map(function(i) {
     return moment(i).tz('Asia/Taipei').format('M/D HH時')
