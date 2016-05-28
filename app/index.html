@@ -115,13 +115,15 @@
       <div class="row">
         <div class="col-xs-12 text-right">
           <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+            <button class="btn btn-primary dropdown-toggle" type="button" id="data_interval" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">過去3小時<span class="caret"></span></button>
-            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="data_interval">
               <li><a role="button" onclick="updateData(3);">過去3小時</a></li>
               <li><a role="button" onclick="updateData(6);">過去6小時</a></li>
               <li><a role="button" onclick="updateData(12);">過去12小時</a></li>
               <li><a role="button" onclick="updateData(24);">過去24小時</a></li>
+              <li><a role="button" onclick="updateData(48);">過去48小時</a></li>
+              <li><a role="button" onclick="updateData(96);">過去96小時</a></li>
             </ul>
           </div>
         </div>
@@ -185,7 +187,8 @@
   <script src="scripts/radial-progress-chart.min.js"></script>
   <script src="scripts/main.js"></script>
   <script src="scripts/metrics.js"></script>
-  <script src="scripts/temphumidrainchart.js"></script>
+  <script src="scripts/temphumid-chart.js"></script>
+  <script src="scripts/rain-chart.js"></script>
   <script src="scripts/radar-chart.js"></script>
   <script src="scripts/radiul-chart.js"></script>
   <script src="scripts/windrose.js"></script>

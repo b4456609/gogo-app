@@ -8,7 +8,8 @@
 function draw(data) {
   drawRadiulProgress(data.radar);
   drawRadar(data.radar);
-  drawTempHumid(data.tempHumidRainChart);
+  tempChart.draw(data.tempHumidRainChart);
+  rainChart.draw(data.tempHumidRainChart);
   show_metrics(data.metric, data.metricTime);
   predictChart(data.predict)
   
@@ -36,6 +37,7 @@ function fetchData(callback, fromDatetime, toDatetime) {
 }
 
 function updateData(interval){
+  $('#data_interval').html('過去'+interval+'小時<span class="caret"></span>');
   var date = moment().subtract(interval, 'hours');
   var fromDatetime = date.toISOString();
   var toDatetime = moment().toISOString();
@@ -44,7 +46,8 @@ function updateData(interval){
 }
 
 function updateChart(data) {
-  drawTempHumid(data.tempHumidRainChart);
+  tempChart.update(data.tempHumidRainChart);
+  rainChart.update(data.tempHumidRainChart);
   var windrose = new WindRose();
   windrose.updateWindVisDiagrams(data.windChart);
 }
