@@ -10,8 +10,10 @@ function drawGPSChart(start, end, timeSpeed) {
   var callback = function (data) {
     console.log(data);
     gpsChart.draw(data.tempHumidRainChart);
+    psiChart.draw(data.air);
+    pmChart.draw(data.air);
   };
-  
+
   fetchData(callback, start, end);
   console.log(speedChart);
   speedChart.draw(timeSpeed);

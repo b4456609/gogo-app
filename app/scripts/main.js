@@ -2,7 +2,7 @@
   'use strict';
   Chart.defaults.global.maintainAspectRatio = false;
   moment.locale('zh-tw');
-  fetchData(draw);
+  updateData(3);
 })();
 
 function draw(data) {
@@ -10,9 +10,11 @@ function draw(data) {
   drawRadar(data.radar);
   tempChart.draw(data.tempHumidRainChart);
   rainChart.draw(data.tempHumidRainChart);
+  psiChart.draw(data.air);
+  pmChart.draw(data.air);
   show_metrics(data.metric, data.metricTime);
   predictChart(data.predict)
-  
+
   var windrose = new WindRose();
   windrose.drawBigWindrose(data.windChart, '#windrose', 'Frequency by Direction');
   windrose.drawBigWindrose(data.windChart, '#windroseavg', 'Average Speed by Direction');
@@ -30,6 +32,8 @@ function updateData(interval){
 function updateChart(data) {
   tempChart.update(data.tempHumidRainChart);
   rainChart.update(data.tempHumidRainChart);
+  psiChart.update(data.air);
+  pmChart.update(data.air);
   var windrose = new WindRose();
   windrose.updateWindVisDiagrams(data.windChart);
 }

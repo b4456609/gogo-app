@@ -96,11 +96,11 @@
           <div id="uv_value"></div>
         </div>
         <div class="col-xs-6 col-sm-4 col-md-3">
-          <h2>PM2.5</h2>
+          <h2><a href="http://taqm.epa.gov.tw/taqm/tw/fpmi.aspx">PM2.5</a></h2>
           <div id="ari_pm"></div>
         </div>
         <div class="col-xs-6 col-sm-4 col-md-3">
-          <h2>PSI</h2>
+          <h2><a href="http://taqm.epa.gov.tw/taqm/tw/b0201.aspx">PSI</a></h2>
           <div id="air_psi"></div>
         </div>
         <div class="col-xs-6 col-sm-4 col-md-3">
@@ -132,7 +132,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12">
-          <canvas id="tempChart" height="430"></canvas>
+          <canvas id="tempChart" height="400"></canvas>
         </div>
         <div class="col-xs-12">
           <canvas id="rainChart" height="200"></canvas>
@@ -144,6 +144,16 @@
         </div>
         <div class="col-xs-12 col-md-6">
           <div id="windroseavg"></div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-xs-12 col-md-6">
+          <h2>PM2.5</h2>
+          <canvas id="pmChart" height="200"></canvas>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <h2>PSI</h2>
+          <canvas id="psiChart" height="200"></canvas>
         </div>
       </div>
     </div>
@@ -194,6 +204,7 @@
   <script src="scripts/radiul-chart.js"></script>
   <script src="scripts/windrose.js"></script>
   <script src="scripts/predict.js"></script>
+  <script src="scripts/air.js"></script>
   <!-- endbuild -->
 </body>
 

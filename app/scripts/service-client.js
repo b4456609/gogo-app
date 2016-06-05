@@ -4,7 +4,9 @@ function fetchData(callback, fromDatetime, toDatetime) {
     data.start = fromDatetime;
     data.end = toDatetime;
   }
-  var jqxhr = $.getJSON('http://140.121.101.164:5000/',data)
+  // var url = 'http://localhost:5000/';
+  var url = 'http://140.121.101.164:5000/';
+  var jqxhr = $.getJSON(url,data)
     .done(function(json) {
       console.log(json)
       callback(json);
