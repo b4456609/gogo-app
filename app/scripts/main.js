@@ -2,7 +2,10 @@
   'use strict';
   Chart.defaults.global.maintainAspectRatio = false;
   moment.locale('zh-tw');
-  updateData(3);
+  var date = moment().subtract(3, 'hours');
+  var fromDatetime = date.toISOString();
+  var toDatetime = moment().toISOString();
+  fetchData(draw, fromDatetime, toDatetime);
 })();
 
 function draw(data) {
